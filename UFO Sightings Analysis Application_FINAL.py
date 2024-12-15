@@ -3,13 +3,13 @@
 
 # ### UFO Sightings Analysis Application
 
-# In[1]:
+# In[66]:
 
 
 pip install requests pandas matplotlib seaborn plotly dash
 
 
-# In[2]:
+# In[67]:
 
 
 import pandas as pd
@@ -20,21 +20,21 @@ ufo.info()
 ufo.head()
 
 
-# In[3]:
+# In[68]:
 
 
 # stats
 ufo.describe()
 
 
-# In[4]:
+# In[69]:
 
 
 # value counts to understand the most frequent shapes
 print(ufo['UFO_shape'].value_counts())
 
 
-# In[5]:
+# In[70]:
 
 
 import pandas as pd
@@ -64,7 +64,7 @@ plt.show()
 
 # The correlation matrix shows weak relationships between numeric features. The latitude and longitude are slightly negatively correlated, -0.39, while other variables, such as **hour** and **length of encounter**, are almost uncorrelated, which means no strong patterns or dependencies.
 
-# In[7]:
+# In[73]:
 
 
 import requests
@@ -86,7 +86,7 @@ else:
     print(f"Failed to fetch data from the API. Status code: {response.status_code}")
 
 
-# In[8]:
+# In[74]:
 
 
 import pandas as pd
@@ -98,13 +98,26 @@ api_df = pd.read_csv('ufo_sightings_api_data.csv')
 print("Current API Data Columns:", api_df.columns)
 
 
-# In[9]:
+# In[75]:
 
 
 print(api_df.head())
 
 
-# In[10]:
+# In[76]:
+
+
+api_data = pd.read_csv("ufo_sightings_api_data.csv")
+
+# Assign appropriate column names to the API data
+api_data.columns = (['Date_time', 'City', 'State', 'UFO_shape', 'Duration', 'Comments',
+        'Date_reported','Report_Number', 'Year', 'Month', 'Day', 'Time_of_day',
+        'Duration_minutes', 'Report_link', 'Additional_comments' ])
+api_data.to_csv("renamed_ufo_data.csv", index=False)
+print("Renamed dataset saved as 'renamed_ufo_data.csv'")
+
+
+# In[77]:
 
 
 import pandas as pd
@@ -113,7 +126,7 @@ import pandas as pd
 df1 = pd.read_csv('ufo-sightings-transformed.csv', index_col=0)
 
 # loading api that was turned into a csv
-api_df = pd.read_csv('ufo_sightings_api_data_renamed.csv')
+api_df = pd.read_csv('renamed_ufo_data.csv')
 
 # looking for common columns for a smooth merge
 df1_columns = df1.columns
@@ -122,7 +135,7 @@ api_df_columns = api_df.columns
 (df1_columns, api_df_columns)
 
 
-# In[11]:
+# In[78]:
 
 
 print("Data type in df1:", df1['Date_time'].dtype)
@@ -138,7 +151,7 @@ print("Data type in df1:", df1['Date_time'].dtype)
 print("Data type in api_df:", api_df['Date_time'].dtype)
 
 
-# In[12]:
+# In[79]:
 
 
 # looking for rows where Date_time wasn;t converted
@@ -149,7 +162,7 @@ print("Rows in api_df where 'Date_time' is NaT:")
 print(api_df[pd.isna(api_df['Date_time'])].head(10))
 
 
-# In[13]:
+# In[80]:
 
 
 # droping rows with NaT in the Date_time column in api 
@@ -157,7 +170,7 @@ api_df = api_df.dropna(subset=['Date_time'])
 print("Rows in api_df after dropping NaT in 'Date_time':", api_df.shape)
 
 
-# In[14]:
+# In[81]:
 
 
 # merging the datasets on 'Date_time' for accurate results
@@ -166,7 +179,7 @@ print("Shape of the merged DataFrame:", merged_df.shape)
 print(merged_df.head())
 
 
-# In[15]:
+# In[82]:
 
 
 class BaseAnalysis:
@@ -208,7 +221,7 @@ print(distribution)
 print(shapes)
 
 
-# In[16]:
+# In[83]:
 
 
 class BaseAnalysis:
@@ -229,7 +242,7 @@ trends = temporal_analysis.trend_over_time('Date_time')
 print(trends)
 
 
-# In[17]:
+# In[84]:
 
 
 import pandas as pd
@@ -255,7 +268,7 @@ visualizer.plot_trends(trends)
 # ### Insights:
 # Starting from the mid-1990s, there is a sharp rise in the number of sightings until it peaks around 2012. Before the 1990s, the sightings were relatively stable and at a low level. This sudden rise could be because of greater media exposure, increased mechanisms for reporting, or other societal factors related to the fascination with UFO phenomena during this period. The sharp drop at the end may indicate incomplete data for the last year.
 
-# In[18]:
+# In[85]:
 
 
 import matplotlib.pyplot as plt
@@ -278,7 +291,7 @@ plt.show()
 # ### Insights:
 # Most of the sightings are from North America, especially in the United States, revealing a high tendency for more reporting in the region. Other noticeable clustering is depicted in Europe and parts of Australia, whereas regions of South America, Africa, and most of Asia have fewer sightings recorded. This reflects possible cultural or technological disparities, or different media-associated effects on reporting UFO phenomena across the world.
 
-# In[19]:
+# In[86]:
 
 
 import matplotlib.pyplot as plt
@@ -299,7 +312,7 @@ plt.show()
 # ### Insights:
 # Summer has the highest number of sightings, followed by Autumn, while Spring and Winter have considerably fewer reports. This may be indicative of increased outdoor activity and clearer skies in the warmer months, leading to more sightings during summer and autumn.
 
-# In[20]:
+# In[87]:
 
 
 # converting duration column to numeric to plot duration analysis 
@@ -326,7 +339,7 @@ plt.show()
 # ### Insights:
 # Most of the sightings last for very short times, lying near the lower end, actually close to zero seconds. Extremely few of them have very long times, and these are thus viewed as outliers. It therefore follows that most UFO encounters are short, with very rare occurrences of extended times.
 
-# In[21]:
+# In[88]:
 
 
 import matplotlib.pyplot as plt
@@ -347,7 +360,7 @@ plt.show()
 # ### Insights:
 # Most sightings take place at the end of nighttime, sharply increasing between 8:00 PM and 11:00 PM, peaking at about 9:00 and 10:00 PM. Then, the number goes way down during the early hours of the morning and reaches their bottom between 6:00 AM and 5:00 PM, showing UFO reports are much rarer in daytime. This could support that sightings are more visible during the evening or at night.
 
-# In[22]:
+# In[89]:
 
 
 # grouping by location and counting sightings
@@ -367,7 +380,7 @@ plt.show()
 # ### Insights
 # Most of the data falls within the United States, which reports many more sightings than any other country. Following that are Canada and the United Kingdom, which are significantly lower in their counts. Other countries such as Australia, Mexico, and India show minimal reports about UFOs. It appears that UFO sightings are highly concentrated in the United States. This may be explained by the higher public interest, media reporting, or cultural factors.
 
-# In[23]:
+# In[90]:
 
 
 # filtering data for US and groupingby state
@@ -388,7 +401,7 @@ plt.show()
 # ### Insights:
 # California leads the charge by a wide margin, with close to 14,000 sightings, making it the most active state for UFO reports. Other notable states include Washington, Florida, and Illinois, but their counts are significantly lower. The distribution gradually decreases across other states, showing that sightings are concentrated in a few key states, likely due to population density, reporting awareness, or regional interest in UFO phenomena.
 
-# In[24]:
+# In[91]:
 
 
 # counting UFO sightings by shape
@@ -408,7 +421,7 @@ plt.show()
 # ### Insights:
 # The dominant shape is "Light" with more than 26,000 sightings, making it the most frequently observed. "Fireball," "Circle," and "Triangle" follow closely behind with approximately 12,000 - 13,000 reports each. Other shapes like "Disk," "Oval," and "Formation" have far fewer sightings, suggesting they are either less common sightings or very difficult to define clearly. Overall, simpler or ambiguous shapes like "Light" and "Fireball" tend to be reported more frequently.
 
-# In[39]:
+# In[92]:
 
 
 # pivot table for region and shapes reported
@@ -426,7 +439,7 @@ pivot_table.tail()
 # ### Insights:
 # This table highlights how sightings vary significantly by region and shape, with certain shapes like "Light" and "Circle" appearing more frequently across multiple areas.
 
-# In[40]:
+# In[93]:
 
 
 import pandas as pd
@@ -446,7 +459,7 @@ merged_df['longitude'] = pd.to_numeric(merged_df['longitude'], errors='coerce')
 filtered_df = merged_df[(merged_df['Year_x'] == 1974) & (merged_df['UFO_shape_x'].isin(['All Shapes']))]
 
 
-# In[38]:
+# In[94]:
 
 
 import dash
@@ -512,11 +525,24 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 
 
-# In[ ]:
+# ### 🛸 Conclusion
+# 
 
-
-
-
+# In this project, I analyzed UFO sightings data to find patterns and trends in how, where, and when these mysterious events are reported. Cleaning the data and visualizing it with graphs and tables brought out some interesting insights:
+# 
+# - Sightings Over Time: UFO sightings have grown significantly since the mid-1990s, peaking around 2012. This could be linked to better technology, increased public interest, or even the rise of social media.
+# 
+# - Geographical Hotspots: The United States leads by a huge margin in UFO sightings, with California being the leading state. Other countries like Canada and the UK also show notable activity.
+# 
+# - When Sightings Happen: Most sightings take place during summer and autumn, particularly between 8 PM and 11 PM.
+# 
+# - Shapes of UFOs: Lights, fireballs, and circles are the most reported shapes, which raises curiosity regarding their nature.
+# 
+# This project made it possible for me to practice data cleaning, data visualization, and analysis with this intriguing dataset. Of course, this is just a start; other aspects, such as explaining the reasons behind different areas showing more sightings, if culture and technology plays its part, etc., remain in abundance.
+# 
+# I hope in general that this will inspire some curiosity into the unknown and further investigation into these phenomena. Thanks for checking it out, and feel free to refer to the video walkthrough below for a step-by-step explanation!
+# 
+# 
 
 # In[ ]:
 
