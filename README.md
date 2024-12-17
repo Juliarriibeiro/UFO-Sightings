@@ -68,6 +68,19 @@ You can watch it here:
 - Matplotlib & Seaborn (Visualizations)
 - Plotly & Dash (Interactive Plots)
 
+Running the Project
+
+1. Clone the repository:
+   
+       git clone https://github.com/Juliarriibeiro/UFO-Sightings-Project.git
+    
+       cd ufo-sightings-analysis
+
+3. Install required libraries:
+   
+       pip install pandas matplotlib seaborn plotly dash
+
+5. Run the Jupyter Notebook to perfom the analysis.
 
 📷 Visualizations
 1. Yearly UFO Sightings
