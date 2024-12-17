@@ -2,6 +2,26 @@
 
 This project analyzes UFO sightings data using Python, exploring trends, geographic distributions, and patterns over time. The project leverages data cleaning, visualization, and pivot table analysis to uncover insights from real-world UFO sighting reports.
 
+📊 Datasets
+
+This project uses two datasets:
+
+- API Dataset:
+
+    - Source: NUFORC Sightings Database API
+
+    - Link: [NUFORC API](https://nuforc-sightings-database-api.herokuapp.com/sightings)
+
+    - Contains real-time reported UFO sightings.
+
+
+- CSV Dataset:
+
+  - File: ufo-sightings-transformed.csv
+
+  - You can find the csv file in this repository under ufo-sightings-transformed.csv
+  
+
 📊 Project Overview
 
 
