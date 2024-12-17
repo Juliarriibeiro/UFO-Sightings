@@ -8,31 +8,47 @@ This project analyzes UFO sightings data using Python, exploring trends, geograp
 The analysis includes:
 
 - Data Cleaning
-Handling missing values and inconsistent date formats.
-Converting columns like Date_time into a consistent datetime format.
+  
+  - Handling missing values and inconsistent date formats.
+
+  - Converting columns like Date_time into a consistent datetime format.
 
 - Data Visualization
-Trends of UFO sightings over the years.
-Geographical distribution of sightings (latitude/longitude).
-Seasonal, hourly, and shape-specific insights.
-Regional and state-level UFO shape distribution.
+  
+  - Trends of UFO sightings over the years.
+
+  - Geographical distribution of sightings (latitude/longitude).
+
+  - Seasonal, hourly, and shape-specific insights.
+
+  - Regional and state-level UFO shape distribution.
 
 - Pivot Table Analysis
-Summarizing data to explore the frequency of UFO shapes reported by region.
+  
+  - Summarizing data to explore the frequency of UFO shapes reported by region.
 
 📈 Key Insights
 
 
 - Yearly Trends:
-UFO sightings increased sharply after 1995, peaking around 2012.
+  
+  - UFO sightings increased sharply after 1995, peaking around 2012.
+
 - Geographic Distribution:
-Most sightings were reported in the United States, particularly California.
+  
+  - Most sightings were reported in the United States, particularly California.
+
 - Seasonal Patterns:
-Sightings peak during summer and autumn, likely due to clearer skies and outdoor activities.
+  
+  - Sightings peak during summer and autumn, likely due to clearer skies and outdoor activities.
+
 - Hourly Analysis:
-Sightings are most frequent between 8 PM and 11 PM, with a sharp decline after midnight.
+  
+  - Sightings are most frequent between 8 PM and 11 PM, with a sharp decline after midnight.
+
 - Shape Distribution:
-The most commonly reported shapes are "Light," "Fireball," and "Circle".
+  
+  - The most commonly reported shapes are "Light," "Fireball," and "Circle".
 
 🎥 Project Walkthrough Video
 
