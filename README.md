@@ -68,7 +68,7 @@ You can watch it here:
 - Matplotlib & Seaborn (Visualizations)
 - Plotly & Dash (Interactive Plots)
 
-Running the Project
+🚀 Running the Project
 
 1. Clone the repository:
    
