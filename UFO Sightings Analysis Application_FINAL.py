@@ -3,13 +3,13 @@
 
 # ### UFO Sightings Analysis Application
 
-# In[66]:
+# In[1]:
 
 
-pip install requests pandas matplotlib seaborn plotly dash
+pip install requests pandas matplotlib seaborn plotly dash rise
 
 
-# In[67]:
+# In[3]:
 
 
 import pandas as pd
@@ -20,7 +20,7 @@ ufo.info()
 ufo.head()
 
 
-# In[68]:
+# In[4]:
 
 
 # stats
@@ -34,7 +34,7 @@ ufo.describe()
 print(ufo['UFO_shape'].value_counts())
 
 
-# In[70]:
+# In[5]:
 
 
 import pandas as pd
@@ -64,7 +64,7 @@ plt.show()
 
 # The correlation matrix shows weak relationships between numeric features. The latitude and longitude are slightly negatively correlated, -0.39, while other variables, such as **hour** and **length of encounter**, are almost uncorrelated, which means no strong patterns or dependencies.
 
-# In[73]:
+# In[6]:
 
 
 import requests
@@ -86,7 +86,7 @@ else:
     print(f"Failed to fetch data from the API. Status code: {response.status_code}")
 
 
-# In[74]:
+# In[7]:
 
 
 import pandas as pd
@@ -98,13 +98,13 @@ api_df = pd.read_csv('ufo_sightings_api_data.csv')
 print("Current API Data Columns:", api_df.columns)
 
 
-# In[75]:
+# In[8]:
 
 
 print(api_df.head())
 
 
-# In[76]:
+# In[9]:
 
 
 api_data = pd.read_csv("ufo_sightings_api_data.csv")
@@ -117,7 +117,7 @@ api_data.to_csv("renamed_ufo_data.csv", index=False)
 print("Renamed dataset saved as 'renamed_ufo_data.csv'")
 
 
-# In[77]:
+# In[10]:
 
 
 import pandas as pd
@@ -135,15 +135,15 @@ api_df_columns = api_df.columns
 (df1_columns, api_df_columns)
 
 
-# In[78]:
+# In[12]:
 
 
 print("Data type in df1:", df1['Date_time'].dtype)
 print("Data type in api_df:", api_df['Date_time'].dtype)
 
 # converting 'Date_time' to datetime format in both datasets
-df1['Date_time'] = pd.to_datetime(df1['Date_time'], errors='coerce')
-api_df['Date_time'] = pd.to_datetime(api_df['Date_time'], errors='coerce')
+df1['Date_time'] = pd.to_datetime(df1['Date_time'], format='%Y-%m-%d %H:%M:%S', errors='coerce')
+api_df['Date_time'] = pd.to_datetime(api_df['Date_time'], format='%Y-%m-%d %H:%M:%S', errors='coerce')
 
 # checking changes
 print("After conversion:")
@@ -151,7 +151,7 @@ print("Data type in df1:", df1['Date_time'].dtype)
 print("Data type in api_df:", api_df['Date_time'].dtype)
 
 
-# In[79]:
+# In[13]:
 
 
 # looking for rows where Date_time wasn;t converted
@@ -162,7 +162,7 @@ print("Rows in api_df where 'Date_time' is NaT:")
 print(api_df[pd.isna(api_df['Date_time'])].head(10))
 
 
-# In[80]:
+# In[14]:
 
 
 # droping rows with NaT in the Date_time column in api 
@@ -170,16 +170,16 @@ api_df = api_df.dropna(subset=['Date_time'])
 print("Rows in api_df after dropping NaT in 'Date_time':", api_df.shape)
 
 
-# In[81]:
+# In[30]:
 
 
 # merging the datasets on 'Date_time' for accurate results
 merged_df = pd.merge(df1, api_df, on='Date_time', how='inner')
 print("Shape of the merged DataFrame:", merged_df.shape)
-print(merged_df.head())
+merged_df.head()
 
 
-# In[82]:
+# In[33]:
 
 
 class BaseAnalysis:
@@ -216,12 +216,12 @@ distribution = geo_analysis.distribution_by_location('State')
 pattern_analysis = PatternAnalysis(merged_df)
 shapes = pattern_analysis.common_shapes('UFO_shape_x')
 
-print(trends)
-print(distribution)
-print(shapes)
+#trends
+#distribution
+shapes
 
 
-# In[83]:
+# In[17]:
 
 
 class BaseAnalysis:
@@ -242,7 +242,7 @@ trends = temporal_analysis.trend_over_time('Date_time')
 print(trends)
 
 
-# In[84]:
+# In[18]:
 
 
 import pandas as pd
@@ -268,7 +268,7 @@ visualizer.plot_trends(trends)
 # ### Insights:
 # Starting from the mid-1990s, there is a sharp rise in the number of sightings until it peaks around 2012. Before the 1990s, the sightings were relatively stable and at a low level. This sudden rise could be because of greater media exposure, increased mechanisms for reporting, or other societal factors related to the fascination with UFO phenomena during this period. The sharp drop at the end may indicate incomplete data for the last year.
 
-# In[85]:
+# In[19]:
 
 
 import matplotlib.pyplot as plt
@@ -291,7 +291,7 @@ plt.show()
 # ### Insights:
 # Most of the sightings are from North America, especially in the United States, revealing a high tendency for more reporting in the region. Other noticeable clustering is depicted in Europe and parts of Australia, whereas regions of South America, Africa, and most of Asia have fewer sightings recorded. This reflects possible cultural or technological disparities, or different media-associated effects on reporting UFO phenomena across the world.
 
-# In[86]:
+# In[20]:
 
 
 import matplotlib.pyplot as plt
@@ -312,7 +312,7 @@ plt.show()
 # ### Insights:
 # Summer has the highest number of sightings, followed by Autumn, while Spring and Winter have considerably fewer reports. This may be indicative of increased outdoor activity and clearer skies in the warmer months, leading to more sightings during summer and autumn.
 
-# In[87]:
+# In[21]:
 
 
 # converting duration column to numeric to plot duration analysis 
@@ -339,7 +339,7 @@ plt.show()
 # ### Insights:
 # Most of the sightings last for very short times, lying near the lower end, actually close to zero seconds. Extremely few of them have very long times, and these are thus viewed as outliers. It therefore follows that most UFO encounters are short, with very rare occurrences of extended times.
 
-# In[88]:
+# In[22]:
 
 
 import matplotlib.pyplot as plt
@@ -360,7 +360,7 @@ plt.show()
 # ### Insights:
 # Most sightings take place at the end of nighttime, sharply increasing between 8:00 PM and 11:00 PM, peaking at about 9:00 and 10:00 PM. Then, the number goes way down during the early hours of the morning and reaches their bottom between 6:00 AM and 5:00 PM, showing UFO reports are much rarer in daytime. This could support that sightings are more visible during the evening or at night.
 
-# In[89]:
+# In[23]:
 
 
 # grouping by location and counting sightings
@@ -380,7 +380,7 @@ plt.show()
 # ### Insights
 # Most of the data falls within the United States, which reports many more sightings than any other country. Following that are Canada and the United Kingdom, which are significantly lower in their counts. Other countries such as Australia, Mexico, and India show minimal reports about UFOs. It appears that UFO sightings are highly concentrated in the United States. This may be explained by the higher public interest, media reporting, or cultural factors.
 
-# In[90]:
+# In[24]:
 
 
 # filtering data for US and groupingby state
@@ -401,7 +401,7 @@ plt.show()
 # ### Insights:
 # California leads the charge by a wide margin, with close to 14,000 sightings, making it the most active state for UFO reports. Other notable states include Washington, Florida, and Illinois, but their counts are significantly lower. The distribution gradually decreases across other states, showing that sightings are concentrated in a few key states, likely due to population density, reporting awareness, or regional interest in UFO phenomena.
 
-# In[91]:
+# In[25]:
 
 
 # counting UFO sightings by shape
@@ -421,7 +421,7 @@ plt.show()
 # ### Insights:
 # The dominant shape is "Light" with more than 26,000 sightings, making it the most frequently observed. "Fireball," "Circle," and "Triangle" follow closely behind with approximately 12,000 - 13,000 reports each. Other shapes like "Disk," "Oval," and "Formation" have far fewer sightings, suggesting they are either less common sightings or very difficult to define clearly. Overall, simpler or ambiguous shapes like "Light" and "Fireball" tend to be reported more frequently.
 
-# In[92]:
+# In[26]:
 
 
 # pivot table for region and shapes reported
@@ -439,7 +439,7 @@ pivot_table.tail()
 # ### Insights:
 # This table highlights how sightings vary significantly by region and shape, with certain shapes like "Light" and "Circle" appearing more frequently across multiple areas.
 
-# In[93]:
+# In[27]:
 
 
 import pandas as pd
@@ -459,7 +459,7 @@ merged_df['longitude'] = pd.to_numeric(merged_df['longitude'], errors='coerce')
 filtered_df = merged_df[(merged_df['Year_x'] == 1974) & (merged_df['UFO_shape_x'].isin(['All Shapes']))]
 
 
-# In[94]:
+# In[29]:
 
 
 import dash
@@ -519,7 +519,6 @@ def update_map(selected_year, selected_shapes):
                          size='Duration',
                          projection='natural earth')
     return fig
-
 
 if __name__ == '__main__':
     app.run_server(debug=True)
