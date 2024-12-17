@@ -40,7 +40,7 @@ The most commonly reported shapes are "Light," "Fireball," and "Circle".
 I have recorded a video where I explain the project step-by-step, covering the code, insights, and visualizations. 
 
 You can watch it here:
-👉 Project Walkthrough Video
+👉 [Project Walkthrough Video](https://www.youtube.com/watch?v=v-y-22MzDHA)
 
 🛠 Tools Used
 
