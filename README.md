@@ -40,6 +40,8 @@ The most commonly reported shapes are "Light," "Fireball," and "Circle".
 I have recorded a video where I explain the project step-by-step, covering the code, insights, and visualizations. 
 
 You can watch it here:
+
+
 👉 [Project Walkthrough Video](https://www.youtube.com/watch?v=v-y-22MzDHA)
 
 🛠 Tools Used
@@ -65,5 +67,7 @@ This project was created as part of a college data analysis assignment to practi
 Feel free to fork the repository, contribute, or suggest improvements!
 
 📝 License
+
+
 This project is open-source and free to use under the MIT License.
 
